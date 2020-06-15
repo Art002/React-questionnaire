@@ -1,0 +1,38 @@
+.menuBlock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 260px; 
+    transform: translateX(0);
+    transition: .5s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 100;
+    text-align: center;
+    background: #ffffff;
+}
+.menuBlock ul li {
+    list-style: none;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+.menuBlock ul {
+    padding-left: 0;
+    margin-top: 50px;
+}
+.menuBlock ul hr {
+    height: 1px;
+    background: linear-gradient(0.25turn, #ffffff, #cccccc, #ffffff);
+    border: 0;
+}
+.hiddenMenu {
+    transform: translateX(-260px);
+}
+
+.menuBlock a {
+    text-decoration: none;
+    color: black;
+}
+

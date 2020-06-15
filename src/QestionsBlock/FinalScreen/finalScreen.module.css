@@ -1,0 +1,22 @@
+.questionsList {
+    list-style: none;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+.correct {
+    color: green;
+    margin-left: 10px;
+}
+.wrong {
+    color: red;
+    margin-left: 10px;
+}
+.allQuestions {
+    padding-left: 15px;
+}
+.correctCount {
+    font-weight: bold;
+    font-size: 17px;
+    padding-left: 15px;
+}

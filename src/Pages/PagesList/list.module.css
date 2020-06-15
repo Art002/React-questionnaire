@@ -1,0 +1,12 @@
+.list {
+    font-weight: bold;
+    font-size: 30px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.list ul li {
+    list-style: none;
+    font-weight: normal;
+    font-size: 20px;
+}

@@ -1,0 +1,18 @@
+.questionBlock{
+    text-align: left;
+    width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(110, 106, 106, 0.5);
+    position: relative;
+}
+button {
+    background-color: #ffffff;
+}
+
+button, 
+button:active, 
+button:focus {
+    outline: none;
+}

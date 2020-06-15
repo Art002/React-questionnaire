@@ -1,0 +1,29 @@
+.answerList li {
+    list-style: none;
+    
+}
+
+.answerList li button {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 17px;
+    border: 1px solid #dedcdc;
+    border-radius: 10px;
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+}
+.answerList {
+    padding-left: 0;
+}
+
+.error {
+    background: red;
+}
+
+.success {
+    background: green;
+}
+.disabled {
+    pointer-events:none;
+}

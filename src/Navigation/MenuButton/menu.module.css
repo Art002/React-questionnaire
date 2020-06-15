@@ -1,0 +1,18 @@
+.menuBar {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    font-size: 32px;
+    transition: .5s;
+    z-index: 101;
+}
+
+.menuClose {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    font-size: 32px;
+    transform: translateX(250px);
+    transition: .5s;
+    z-index: 101;
+}

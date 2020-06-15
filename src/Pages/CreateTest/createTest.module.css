@@ -1,0 +1,18 @@
+.createTest {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+    box-shadow: 0 0 7px rgba(0,0,0,0.3);
+    padding: 25px;
+    border-radius: 5px;
+    text-align: left;
+}
+.createTest form div {
+    margin-bottom: 3px;
+}
+
+.createTest hr {
+    height: 1px;
+    background: linear-gradient(0.25turn, #ffffff, #616161, #ffffff);
+    border: 0;
+}
