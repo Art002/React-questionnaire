@@ -5,12 +5,9 @@ import axios from 'axios';
 import Preloader from './../../Preloader/preloader'
 
 class List extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            tests: [],
-            loading: true
-        }
+    state = {
+        tests: [],
+        loading: true
     }
     async componentDidMount(){
         const response = await axios.get('https://react-tests-b0e1f.firebaseio.com/.json')
@@ -24,8 +21,7 @@ class List extends React.Component {
         this.setState({tests, loading: false})
     }
     render(){
-    const tests = this.state.tests
-    const loading = this.state.loading
+    const {tests, loading} = this.state
     const testsList = tests.map((test) => {
         return (
             <li key={test.id}>

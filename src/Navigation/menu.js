@@ -5,11 +5,8 @@ import MenuBlock from './Menu/menuBlock';
 import Shadow from './Shadow/shadow'
 
 class Menu extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            isOpen: false
-        }
+    state = {
+        isOpen: false
     }
     toggleMenu = () => {
         this.setState({isOpen: !this.state.isOpen})

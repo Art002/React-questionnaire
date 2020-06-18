@@ -1,0 +1,9 @@
+.select {
+    padding: 6px;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.select option {
+    min-height: 2em;
+}

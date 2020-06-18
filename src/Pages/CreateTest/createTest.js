@@ -24,20 +24,17 @@ function generateInputs() {
 }
 
 class CreateTest extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      tests: [],
-      inputs: generateInputs(),
-      correctAnswer: 2,
-      options: [
-        {text: 'Вариант 1', value: 1},
-        {text: 'Вариант 2', value: 2},
-        {text: 'Вариант 3', value: 3},
-        {text: 'Вариант 4', value: 4}
-      ],
-      disabled: true
-    }
+  state = {
+    tests: [],
+    inputs: generateInputs(),
+    correctAnswer: 2,
+    options: [
+      {text: 'Вариант 1', value: 1},
+      {text: 'Вариант 2', value: 2},
+      {text: 'Вариант 3', value: 3},
+      {text: 'Вариант 4', value: 4}
+    ],
+    disabled: true
   }
 
   validation = (e, input) => {
@@ -56,8 +53,7 @@ class CreateTest extends React.Component {
         isFormValid = inputs[input].isValid && isFormValid
       }
     }
-
-  return isFormValid
+    return isFormValid
   }
 
   changeHandler = (e, oneInput) => {
@@ -68,7 +64,7 @@ class CreateTest extends React.Component {
     input.value = e.target.value
     inputs[oneInput] = input
 
-    this.setState({inputs, disabled: this.disableButton(inputs)})
+    this.setState({inputs, disabled: !this.disableButton(inputs)})
   }
 
   selectChangeHandler = (e) => {
@@ -129,15 +125,15 @@ class CreateTest extends React.Component {
           {inputs}
           <Select label="Правильный ответ"
                   options={this.state.options}
-                  value={this.state.correctAnswer}
+                  value={parseInt(this.state.correctAnswer)}
                   onChange={this.selectChangeHandler}/>
           <Button value="Добавить вопрос"
-                  class="primary"
+                  view="primary"
                   onClick={this.pushQuestion}
-                  disabled={!this.state.disabled}/>
+                  disabled={this.state.disabled}/>
           <Button value="Создать тест"
-                  class="warning"
-                  disabled={!this.state.disabled}
+                  view="warning"
+                  disabled={this.state.disabled}
                   onClick={this.createTest}/>
         </form>
       </div>

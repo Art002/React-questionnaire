@@ -5,41 +5,25 @@ import ProgressCounter from './ProgressCounter/progressCounter';
 import FinalScreen from './FinalScreen/finalScreen'
 import classes from './questionBlock.module.css';
 import { withRouter } from "react-router";
-import {Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import Preloader from './../Preloader/preloader'
 
 class QuestionBlock extends React.Component {
-    constructor(props, match) {
-        super(props, match);
-        this.state = {
-            loading: true,
-            activeQuestion: 0,
-            result: {},
-            finalScreen: [],
-            correctAnswers: 0,
-            disabled: false,
-            isFinished: false,
-            quetionsList: [
-                {
-                    question: 'Какого цвета небо?',
-                    rightAnswerId: 2,
-                    id: 1,
-                    answers: [
-                      {text: 'Черный', id: 1},
-                      {text: 'Синий', id: 2},
-                      {text: 'Красный', id: 3},
-                      {text: 'Зеленый', id: 4}
-                    ]
-                  }
-            ],
-            error: <FinalScreen/>
-        }
+    state = {
+        loading: true,
+        activeQuestion: 0,
+        result: {},
+        finalScreen: [],
+        correctAnswers: 0,
+        disabled: false,
+        isFinished: false,
+        quetionsList: [],
+        error: <FinalScreen/>
     }
 
     choosenAnswer = (id) => {
         this.setState({disabled: true})
-
+        
         const questionsList = this.state.quetionsList;
         const activeQuestion = this.state.activeQuestion;
 
@@ -101,7 +85,7 @@ class QuestionBlock extends React.Component {
                 {loading
                 ? <Preloader />
                 : !loading && !isFinished
-                ? <React.Fragment>
+                ? <>
                     <OneQuestion question={currentQuestion.question} />
                     <ProgressCounter activeQuestion={activeQuestion}
                                 allQuestion={questionsList.length} />
@@ -110,7 +94,7 @@ class QuestionBlock extends React.Component {
                         choosenAnswer={this.choosenAnswer} 
                         result={this.state.result}
                         disabled={this.state.disabled} />
-                  </React.Fragment>
+                  </>
                 : <FinalScreen questionsList={questionsList}
                                finalScreen={this.state.finalScreen}
                                correctAnswers={this.state.correctAnswers}

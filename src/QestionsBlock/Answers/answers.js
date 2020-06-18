@@ -1,17 +1,17 @@
 import React from 'react';
 import classes from './answers.module.css';
+import PropTypes from 'prop-types';
 
-function Answers(props) {
-    
-    const answers = props.answers.map((answer, index) => {
+function Answers({answers, result, choosenAnswer, disabled}) {    
+    const answersList = answers.map((answer, index) => {
         let cls;    
-        (answer.id in props.result) ? cls = props.result[answer.id] : cls = '';  
+        (answer.id in result) ? cls = result[answer.id] : cls = '';  
         
         return (
             <li key={index}>
                 <button className={classes[cls]}
-                        onClick={() => props.choosenAnswer(answer.id)}
-                        disabled={props.disabled}>
+                        onClick={() => choosenAnswer(answer.id)}
+                        disabled={disabled}>
                     {answer.text}
                 </button>
             </li>
@@ -20,9 +20,16 @@ function Answers(props) {
     
     return (
         <div>
-            <ul className={classes.answerList}>{answers}</ul>
+            <ul className={classes.answerList}>{answersList}</ul>
         </div>
     )
+}
+
+Answers.propTypes = {
+    answers: PropTypes.array,
+    result: PropTypes.object,
+    choosenAnswer: PropTypes.func,
+    disabled: PropTypes.bool
 }
 
 export default Answers;

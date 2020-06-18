@@ -4,9 +4,10 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import RetryButton from './../RetryButton/retryButton';
 import classes from './finalScreen.module.css';
+import PropTypes from 'prop-types';
 
-function FinalScreen(props) {
-    const questions = props.finalScreen.map((question, index) => {
+function FinalScreen({finalScreen, correctAnswers, retryButton}) {
+    const questions = finalScreen.map((question, index) => {
         return (
         <li key={index} className={classes.questionsList}>
             {question.question} 
@@ -19,10 +20,16 @@ function FinalScreen(props) {
     return (
         <div>
             <ul className={classes.allQuestions}>{questions}</ul>
-            <span className={classes.correctCount}>Правильно: {props.correctAnswers} из {props.finalScreen.length}</span>
-            <RetryButton retryButton={props.retryButton}/>
+            <span className={classes.correctCount}>Правильно: {correctAnswers} из {finalScreen.length}</span>
+            <RetryButton retryButton={retryButton}/>
         </div>
     )
+}
+
+FinalScreen.propTypes = {
+    finalScreen: PropTypes.array,
+    correctAnswers: PropTypes.number,
+    retryButton: PropTypes.func
 }
 
 export default FinalScreen;
