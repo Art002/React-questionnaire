@@ -3,7 +3,8 @@ import classes from './auth.module.css';
 import Input from './Inputs/input';
 import is from 'is_js';
 import Button from './../../Buttons/button';
-import axios from 'axios'
+import { connect } from 'react-redux';
+import { logIn, register } from './../../Actions/auth';
 
 class Auth extends React.Component {
   state = {
@@ -43,7 +44,7 @@ class Auth extends React.Component {
     Object.keys(this.state.inputs).forEach(name => {
       isFormValid = this.state.inputs[name].isValid
     })
-    this.setState({isFormValid});
+    this.setState({isFormValid})
   }
 
   inputChange = (event, input) => {
@@ -54,39 +55,26 @@ class Auth extends React.Component {
     inp.touched = true;
     inp.isValid = this.validation(inp.value, inp.type);
 
-    inputs[input] = inp;
+    inputs[input] = inp
 
     this.disabledButton()
-    this.setState({inputs});
+    this.setState({inputs})
   }
 
   register = async(e) => {
     e.preventDefault()
-    const params = {
-      email: this.state.inputs.email.value,
-      password: this.state.inputs.password.value,
-      returnSecureToken: true
-    }
-    try{
-      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCegsXsj4hSwieRMd2B2Yc_arxN5q8yat8', params)
-    } catch(e) {
-     
-    }
+    this.props.register(
+      this.state.inputs.email.value, 
+      this.state.inputs.password.value
+    )
     
   }
   logIn = async(e) => {
     e.preventDefault()
-    const params = {
-      email: this.state.inputs.email.value,
-      password: this.state.inputs.password.value,
-      returnSecureToken: true
-    }
-    try{
-      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCegsXsj4hSwieRMd2B2Yc_arxN5q8yat8', params)
-    } catch(e) {
-      console.log('Неверный пароль')
-    }
-    
+    this.props.logIn(
+      this.state.inputs.email.value, 
+      this.state.inputs.password.value
+    )
   }
 
   render(){
@@ -119,4 +107,16 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth;
+const mapStateToProps = state => {
+  return {
+      token: state.auth.token
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+      logIn: (email, password) => dispatch(logIn(email, password)),
+      register: (email, password) => dispatch(register(email, password))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

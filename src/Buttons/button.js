@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './button.module.css';
 import PropTypes from 'prop-types';
 
-function Button({view, disabled, onClick, value}){
+function Button({ view, disabled, onClick, value }){
     return (
         <button className={classes[view]}
                 disabled={disabled}
@@ -19,4 +19,4 @@ Button.propTypes = {
     value: PropTypes.string
 }
 
-export default Button;
+export default Button

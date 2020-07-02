@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './input.module.css';
 import PropTypes from 'prop-types';
 
-function Input({touched, isValid, errorMessage, label, type, value, onChange}) {
+function Input({ touched, isValid, errorMessage, label, type, value, onChange }) {
   const errorMsg = (touched && !isValid) ? errorMessage : null
   return (  
       <label>
@@ -26,4 +26,4 @@ Input.propTypes = {
   onChange: PropTypes.func,
 }
 
-export default Input;
+export default Input

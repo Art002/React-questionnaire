@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './shadow.module.css';
 import PropTypes from 'prop-types';
 
-function Shadow({toggleMenu}) {
+function Shadow({ toggleMenu }) {
     return(
     <div className={classes.shadow}
             onClick={toggleMenu}>
@@ -13,4 +13,4 @@ function Shadow({toggleMenu}) {
 Shadow.propTypes = {
     toggleMenu: PropTypes.func
 }
-export default Shadow;
+export default Shadow

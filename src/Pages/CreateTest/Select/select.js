@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './select.module.css'
 import PropTypes from 'prop-types';
 
-function Select({label, value, onChange, options}){
+function Select({ label, value, onChange, options }){
     return (
         <div>
             <label>
@@ -29,4 +29,4 @@ Select.propTypes = {
     options: PropTypes.array
 }
 
-export default Select;
+export default Select

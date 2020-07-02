@@ -1,27 +1,17 @@
 import React from 'react';
 import classes from './list.module.css';
-import {NavLink} from 'react-router-dom';
-import axios from 'axios';
-import Preloader from './../../Preloader/preloader'
+import { NavLink } from 'react-router-dom';
+import Preloader from './../../Preloader/preloader';
+import { connect } from 'react-redux';
+import { getTests } from './../../Actions/pagesList'
 
-class List extends React.Component {
-    state = {
-        tests: [],
-        loading: true
+class List extends React.Component {   
+    async componentDidMount(){    
+        this.props.getTests()
     }
-    async componentDidMount(){
-        const response = await axios.get('https://react-tests-b0e1f.firebaseio.com/.json')
-        const tests = []
-        Object.keys(response.data).forEach((key, index) => {
-            tests.push({
-                id: key,
-                name: `Тест №${index + 1}`
-            })
-        })
-        this.setState({tests, loading: false})
-    }
+    
     render(){
-    const {tests, loading} = this.state
+    const { tests, loading } = this.props
     const testsList = tests.map((test) => {
         return (
             <li key={test.id}>
@@ -39,12 +29,23 @@ class List extends React.Component {
         : <ul>
              {testsList}
           </ul>
-        }
-        
+        }   
     </div>
     )
     }
-    
 }
 
-export default List;
+const mapStateToProps = state => {
+    return {
+        tests: state.pagesList.tests,
+        loading: state.pagesList.loading,
+        token: state.auth.token
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTests: () => dispatch(getTests())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List)

@@ -10,4 +10,4 @@ function getAnswers(number){
     }
 }
 
-export default getAnswers;
+export default getAnswers

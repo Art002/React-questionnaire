@@ -4,7 +4,8 @@ import getAnswers from './stateGenerator/stateGenerator';
 import Input from './../Auth/Inputs/input';
 import Button from './../../Buttons/button';
 import Select from './Select/select';
-import axios from 'axios'
+import { addQuestion, createNewTest } from './../../Actions/createTest';
+import { connect } from 'react-redux';
 
 function generateInputs() {
   return {
@@ -25,7 +26,6 @@ function generateInputs() {
 
 class CreateTest extends React.Component {
   state = {
-    tests: [],
     inputs: generateInputs(),
     correctAnswer: 2,
     options: [
@@ -68,14 +68,13 @@ class CreateTest extends React.Component {
   }
 
   selectChangeHandler = (e) => {
-    this.setState({correctAnswer: e.target.value})
+    this.setState({correctAnswer: +e.target.value})
   }
 
   pushQuestion = (e) => {
     e.preventDefault()
     const inputs = {...this.state.inputs}
     const correctAnswer = this.state.correctAnswer
-    const tests = [...this.state.tests]
     const test = {}
     
     test.correctAnswer = correctAnswer
@@ -86,19 +85,17 @@ class CreateTest extends React.Component {
       {text : inputs.answer3.value, id: inputs.answer3.id},
       {text : inputs.answer4.value, id: inputs.answer4.id}
     ]
-    tests.push(test)
+    this.props.addQuestion(test)
 
-    this.setState({tests, inputs: generateInputs()})
+    this.setState({inputs: generateInputs()})
   }
 
   createTest = (e) => {
     e.preventDefault()
     try{
-      axios.post('https://react-tests-b0e1f.firebaseio.com/.json', this.state.tests)
+      this.props.createNewTest()
       this.setState({
-        tests: [],
         inputs: generateInputs(),
-        correctAnswer: 2,
         disabled: true
       })
     } catch(err){}
@@ -125,7 +122,7 @@ class CreateTest extends React.Component {
           {inputs}
           <Select label="Правильный ответ"
                   options={this.state.options}
-                  value={parseInt(this.state.correctAnswer)}
+                  value={this.state.correctAnswer}
                   onChange={this.selectChangeHandler}/>
           <Button value="Добавить вопрос"
                   view="primary"
@@ -141,4 +138,16 @@ class CreateTest extends React.Component {
   }
 }
 
-export default CreateTest;
+const mapStateToProps = state => {
+  return {
+      tests: state.createTest.tests
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+      addQuestion: (test) => dispatch(addQuestion(test)),
+      createNewTest: () => dispatch(createNewTest())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CreateTest)

@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './progressCounter.module.css';
 import PropTypes from 'prop-types';
 
-function ProgressCounter({activeQuestion, allQuestion}) {   
+function ProgressCounter({ activeQuestion, allQuestion }) {   
     return (
         <div className={classes.counter}>
             {activeQuestion + 1} из {allQuestion}
@@ -15,4 +15,4 @@ ProgressCounter.propTypes = {
     allQuestion: PropTypes.number
 }
 
-export default ProgressCounter;
+export default ProgressCounter

@@ -6,7 +6,7 @@ function Header() {
     <div className="Header">
       <h1>Ответьте на вопросы</h1>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

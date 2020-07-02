@@ -6,7 +6,7 @@ import RetryButton from './../RetryButton/retryButton';
 import classes from './finalScreen.module.css';
 import PropTypes from 'prop-types';
 
-function FinalScreen({finalScreen, correctAnswers, retryButton}) {
+function FinalScreen({ finalScreen, correctAnswers, retryButton }) {
     const questions = finalScreen.map((question, index) => {
         return (
         <li key={index} className={classes.questionsList}>
@@ -32,4 +32,4 @@ FinalScreen.propTypes = {
     retryButton: PropTypes.func
 }
 
-export default FinalScreen;
+export default FinalScreen

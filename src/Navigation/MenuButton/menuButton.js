@@ -5,7 +5,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import classes from './menu.module.css';
 import PropTypes from 'prop-types';
 
-function MenuButton({isOpen, toggleMenu}) { 
+function MenuButton({ isOpen, toggleMenu }) { 
     return(
     <>
         {isOpen
@@ -24,4 +24,4 @@ MenuButton.propTypes = {
     toggleMenu: PropTypes.func
 }
 
-export default MenuButton;
+export default MenuButton
